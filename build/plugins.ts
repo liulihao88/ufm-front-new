@@ -14,6 +14,7 @@ import { genScssMultipleScopeVars } from '../src/layout/theme'
 import { vitePluginFakeServer } from 'vite-plugin-fake-server'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import zipPack from 'vite-plugin-zip-pack'
 
 export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompression): PluginOption[] {
   const lifecycle = process.env.npm_lifecycle_event
@@ -37,6 +38,12 @@ export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompress
      * vite-plugin-router-warn只在开发环境下启用，只处理vue-router文件并且只在服务启动或重启时运行一次，性能消耗可忽略不计
      */
     removeNoMatch(),
+    zipPack({
+      inDir: 'ufm', // 输入的文件夹，就是要打包的文件夹
+      outDir: './', // 打包好的 zip 文件放到哪个文件夹下
+      outFileName: `ufm.zip`, // 打包好的文件名，自行定义，这里我定义了一个 timeStringNow 变量，放置了此时此刻的时间 2024-01-06 这样的
+      pathPrefix: '',
+    }),
     // mock支持
     vitePluginFakeServer({
       logger: false,

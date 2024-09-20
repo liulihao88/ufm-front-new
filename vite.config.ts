@@ -4,6 +4,7 @@ import { type UserConfigExport, type ConfigEnv, loadEnv } from 'vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import { root, alias, wrapperEnv, pathResolve, __APP_INFO__ } from './build/utils'
+
 import config from './src/config/baseConfig.ts'
 const target = 'https://10.0.11.33:8008/'
 
@@ -58,6 +59,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     },
     build: {
       // https://cn.vitejs.dev/guide/build.html#browser-compatibility
+      outDir: 'ufm',
       target: 'es2015',
       sourcemap: false,
       // 消除打包大小超过500kb警告
