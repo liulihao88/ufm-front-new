@@ -34,6 +34,7 @@ export default [
       title: '资源',
       rank: 0,
     },
+    redirect: '/source/fileEnter',
     children: [
       {
         path: '/source/fileEnter',
@@ -59,6 +60,7 @@ export default [
       title: '客户端',
       rank: 0,
     },
+    redirect: '/client/view',
     children: [
       {
         path: '/client/view',
@@ -89,6 +91,7 @@ export default [
       icon: 'ep:home-filled',
       title: '测试页',
       rank: 0,
+      showLink: import.meta.env.MODE === 'development',
     },
     children: [
       {
@@ -110,6 +113,7 @@ export default [
       icon: 'ep:home-filled',
       title: '测试页',
       rank: 0,
+      showLink: import.meta.env.MODE === 'development',
     },
     children: [
       {
@@ -118,6 +122,28 @@ export default [
         component: () => import('@/views/test/t2.vue'),
         meta: {
           title: '测试页2',
+          showLink: true,
+        },
+      },
+    ],
+  },
+  {
+    path: '/test3',
+    component: Layout,
+    redirect: '/test/t3',
+    meta: {
+      icon: 'ep:home-filled',
+      title: '测试页',
+      rank: 0,
+      showLink: import.meta.env.MODE === 'development',
+    },
+    children: [
+      {
+        path: '/test/t3',
+        name: 'T3',
+        component: () => import('@/views/test/t3.vue'),
+        meta: {
+          title: '测试页3',
           showLink: true,
         },
       },

@@ -756,14 +756,6 @@ export default defineComponent({
     }
 
     .file-input {
-      @mixin common {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 31px;
-      }
-
       position: relative;
       flex: 1;
       cursor: pointer;
@@ -771,15 +763,11 @@ export default defineComponent({
       border-radius: 4px;
 
       input {
-        @include common;
-
         z-index: 1;
         opacity: 0;
       }
 
       span {
-        @include common;
-
         z-index: 0;
         line-height: 31px;
         color: $bg-color;

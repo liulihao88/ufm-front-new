@@ -77,6 +77,7 @@ export default {
     ],
     'font-family-no-missing-generic-family-keyword': null,
     'selector-id-pattern': null,
+    'no-duplicate-selectors': null,
   },
   ignoreFiles: ['**/*.js', '**/*.ts', '**/*.jsx', '**/*.tsx', 'report.html'],
 }

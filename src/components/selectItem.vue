@@ -307,7 +307,7 @@ $box-shadow-app:
     margin-right: 26px;
 
     .input-el {
-      @include ellipsisFn;
+      @ellipsis-fn;
     }
 
     div {
@@ -342,7 +342,7 @@ $box-shadow-app:
       box-shadow: $box-shadow-app;
 
       li {
-        @include ellipsisFn;
+        @ellipsis-fn;
 
         z-index: 10;
         width: 100%;

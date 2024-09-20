@@ -86,17 +86,17 @@
               <img src="@/assets/image/ip_cion.png" class="ip-img" />
               <span>{{ item.hostName }}</span>
             </div>
-            <div class="btn-top-box">
-              <u-button type="ghost" size="small" @click.stop="pubOperationFn(item, '重启')">重启</u-button>
-              <u-button type="ghost" size="small" @click.stop="pubOperationFn(item, '更新')">更新</u-button>
-              <u-button type="ghost" size="small" @click.stop="pubOperationFn(item, '关闭')">关闭</u-button>
+            <div class="f">
+              <el-button type="primary" size="small" @click.stop="pubOperationFn(item, '重启')">重启</el-button>
+              <el-button type="primary" size="small" @click.stop="pubOperationFn(item, '更新')">更新</el-button>
+              <el-button type="primary" size="small" @click.stop="pubOperationFn(item, '关闭')">关闭</el-button>
             </div>
           </div>
           <hr size="1px" :class="item.isSelect ? 'fhr' : 'hr'" />
           <!-- 卡片的内容部分 -->
           <div class="main-box client-card-box">
             <a-form>
-              <a-row :gutter="24" style=" row-gap: 12px;margin-right: -24px">
+              <a-row :gutter="24" style="row-gap: 12px; margin-right: -24px">
                 <template v-for="(el, index) in item.unit" :key="index">
                   <a-col :span="12" class="form-box-item">
                     <a-form-item :label="el.lable">
@@ -365,7 +365,7 @@ const countStatus = (value) => {
     position: relative;
     display: inline-block;
     padding-left: 12px;
-    margin-left: 22px;
+    margin-left: 8px;
 
     span {
       height: 20px;
@@ -397,23 +397,13 @@ const countStatus = (value) => {
   background-color: #fff;
 
   .top-box {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     height: 46px;
     padding: 12px 16px;
     color: #214fe5;
     background: #eff4fd;
-
-    .btn-top-box {
-      position: absolute;
-      right: 16px;
-      display: inline-block;
-      margin-top: -5px;
-
-      button {
-        margin-left: 8px;
-        color: #5675da;
-      }
-    }
   }
 
   .box-top {

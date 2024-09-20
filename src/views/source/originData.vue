@@ -405,5 +405,5 @@ formState.value = {
 listSelectFn('DMC')
 </script>
 <style lang="scss">
-@import url('@/assets/css/dataOrgin');
+@import url('../../assets/css/dataOrgin.scss');
 </style>

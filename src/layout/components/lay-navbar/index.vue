@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { unref } from 'vue'
+import { unref, ref } from 'vue'
 import { useNav } from '@/layout/hooks/useNav'
 import LaySearch from '../lay-search/index.vue'
 import LayNotice from '../lay-notice/index.vue'
@@ -8,6 +8,7 @@ import LaySidebarFullScreen from '../lay-sidebar/components/SidebarFullScreen.vu
 import LaySidebarBreadCrumb from '../lay-sidebar/components/SidebarBreadCrumb.vue'
 import LaySidebarTopCollapse from '../lay-sidebar/components/SidebarTopCollapse.vue'
 import { handleAliveRoute, getTopMenu } from '@/router/utils'
+import ModifyPwd from '@/layout/components/lay-navbar/modifyPwd.vue'
 
 import LogoutCircleRLine from '@iconify-icons/ri/logout-circle-r-line'
 import Setting from '@iconify-icons/ri/settings-3-line'
@@ -16,6 +17,7 @@ const { layout, device, logout, onPanel, pureApp, username, userAvatar, avatarsS
 import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
+const modifyPwdRef = ref(null)
 function onFresh() {
   const { fullPath, query } = unref(route)
   router.replace({
@@ -23,6 +25,9 @@ function onFresh() {
     query,
   })
   handleAliveRoute(route, 'refresh')
+}
+const modifyPwd = () => {
+  modifyPwdRef.value.open()
 }
 </script>
 
@@ -41,11 +46,15 @@ function onFresh() {
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <div class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover m-r-10" @click="onFresh">
-        <IconifyIconOffline :icon="RefreshRight" />
+        <o-tooltip content="刷新">
+          <IconifyIconOffline :icon="RefreshRight" />
+        </o-tooltip>
       </div>
 
       <div class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover m-r-10" @click="logout">
-        <IconifyIconOffline :icon="LogoutCircleRLine" style="margin: 5px" />
+        <o-tooltip content="退出系统">
+          <IconifyIconOffline :icon="LogoutCircleRLine" style="margin: 5px" />
+        </o-tooltip>
       </div>
       <!-- 菜单搜索 -->
       <LaySearch id="header-search" />
@@ -54,15 +63,19 @@ function onFresh() {
       <!-- 消息通知 -->
       <LayNotice id="header-notice" />
       <!-- 退出登录 -->
-      <el-dropdown trigger="click">
+      <el-dropdown trigger="hover">
         <span class="el-dropdown-link navbar-bg-hover select-none">
           <img :src="userAvatar" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>
           <el-dropdown-menu class="logout">
+            <el-dropdown-item @click="modifyPwd">
+              <o-icon name="edit" class="po-r" />
+              修改密码
+            </el-dropdown-item>
             <el-dropdown-item @click="logout">
-              <IconifyIconOffline :icon="LogoutCircleRLine" style="margin: 5px" />
+              <IconifyIconOffline :icon="LogoutCircleRLine" class="m-r-8" />
               退出系统
             </el-dropdown-item>
           </el-dropdown-menu>
@@ -72,6 +85,8 @@ function onFresh() {
         <IconifyIconOffline :icon="Setting" />
       </span>
     </div>
+
+    <ModifyPwd ref="modifyPwdRef" />
   </div>
 </template>
 

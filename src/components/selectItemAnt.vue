@@ -181,7 +181,7 @@ export default defineComponent({
     margin-right: 26px;
 
     .input-el {
-      @include ellipsisFn;
+      @ellipsis-fn;
     }
 
     div {
@@ -214,7 +214,7 @@ export default defineComponent({
       border-radius: 4px;
 
       li {
-        @include ellipsisFn;
+        @ellipsis-fn;
 
         z-index: 10;
         width: 100%;

@@ -6,5 +6,7 @@ const { proxy } = getCurrentInstance()
 <template>
   <div>
     <div>test/t3.vue</div>
+    <span class="iconfont icon-ufm-lianjieliu" />
+    <span class="iconfont icon-ufm-shujukulianjie" />
   </div>
 </template>

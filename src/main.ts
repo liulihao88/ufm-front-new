@@ -18,8 +18,6 @@ pinia.use(piniaPluginPersistedstate)
 import Table from '@pureadmin/table'
 // import PureDescriptions from "@pureadmin/descriptions";
 
-// 引入iconfont
-import './icon/iconfont.css'
 // 引入重置样式
 import './style/reset.scss'
 // 导入公共样式
@@ -32,6 +30,8 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 // 导入字体图标
 import './assets/iconfont/iconfont.js'
 import './assets/iconfont/iconfont.css'
+// 引入iconfont
+import './icon/iconfont.css'
 
 import Antd, { ConfigProvider } from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'

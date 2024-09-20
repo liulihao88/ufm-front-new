@@ -1,6 +1,6 @@
 <template>
   <div class="page-layout">
-    <img src="../assets/image/bg3.png" class="bg-el" />
+    <img src="@/assets/image/bg3.png" class="bg-el" />
     <div class="data-box">
       <div class="img-box">
         <img src="@/assets/image/logo@2x.png" class="w-50 mr" />
@@ -20,12 +20,10 @@ import Login from '@/components/login.vue'
 </script>
 
 <style lang="scss">
-@import url('../../assets/css/main.scss');
-
 .page-layout {
   position: relative;
   height: 100vh;
-  background: url("../../assets/image/LOGIN-bg.png") no-repeat center;
+  background: url('../../assets/image/LOGIN-bg.png') no-repeat center;
   background-size: 100%;
 
   .bg-el {

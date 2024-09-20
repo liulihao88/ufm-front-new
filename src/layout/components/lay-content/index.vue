@@ -152,8 +152,14 @@ const transitionMain = defineComponent({
 
 .main-content {
   box-sizing: border-box;
-  height: calc(100vh - 120px);
-  padding: 24px;
+  height: calc(100vh - 136px);
+
+  /* height: 100%; */
   overflow-y: auto;
+  background: #fff;
+}
+
+.grow {
+  padding: 16px 16px 0;
 }
 </style>
