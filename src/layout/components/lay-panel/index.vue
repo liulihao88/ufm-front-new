@@ -47,7 +47,7 @@ onBeforeUnmount(() => {
 <template>
   <div :class="{ show }">
     <div class="right-panel-background" />
-    <div ref="target" class="right-panel bg-bg_color">
+    <div ref="target" class="right-panel bg-bg-color">
       <div class="project-configuration border-b-[1px] border-solid border-[var(--pure-border-color)]">
         <h4 class="dark:text-white">系统配置</h4>
         <span

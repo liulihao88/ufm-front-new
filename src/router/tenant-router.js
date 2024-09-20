@@ -1,52 +1,83 @@
 const Layout = () => import('@/layout/index.vue')
 export default [
   {
-    path: '/apps',
-    name: 'Overview',
+    path: '/task',
+    name: 'task',
     component: Layout,
+    redirect: '/task/public',
     meta: {
       icon: 'ep:home-filled',
-      title: '租户概览',
+      title: '任务',
+      rank: 1,
     },
     children: [
       {
-        path: '/apps/overview',
-        name: 'Overview',
-        component: () => import('@/views/overview/index.vue'),
-        meta: {
-          icon: 'ep:home-filled',
-          title: '租户概览',
-          path: '/apps/overview',
-        },
+        path: '/task/public',
+        name: 'public',
+        meta: { title: '公共任务', showLink: true },
+        component: async () => await import('@/views/task/publicTask.vue'),
+      },
+      {
+        path: '/task/edit/:id?',
+        name: 'edit',
+        meta: { title: '新增任务', showLink: false, showParent: true, activePath: '/task/public' },
+        component: async () => await import('@/views/task/editPage.vue'),
       },
     ],
   },
   {
-    path: '/apps/bucket',
+    path: '/source',
+    name: 'source',
     component: Layout,
-    redirect: '/apps/bucket/management',
     meta: {
-      icon: 'ep:home-filled',
-      title: '空间管理',
+      icon: 'ep:van',
+      title: '资源',
+      rank: 0,
     },
     children: [
       {
-        path: '/apps/bucket/management',
-        name: 'Management',
-        component: () => import('@/views/bucket/management.vue'),
-        meta: {
-          icon: 'ep:home-filled',
-          title: '桶列表',
-        },
+        path: '/source/fileEnter',
+        name: 'fileEnter',
+        meta: { title: '远程文件系统', noCache: true },
+        component: async () => await import('@/views/source/fileEnter.vue'),
       },
       {
-        path: '/apps/bucket/objectexplorer',
-        name: 'Objectexplorer',
-        component: () => import('@/views/bucket/objectexplorer.vue'),
-        meta: {
-          icon: 'ep:home-filled',
-          title: '桶概览',
-        },
+        path: '/source/origin',
+        name: 'origin',
+        meta: { title: '远程数据源', noCache: true },
+        component: async () => await import('@/views/source/originData.vue'),
+      },
+    ],
+  },
+
+  {
+    path: '/client',
+    name: 'client',
+    component: Layout,
+    meta: {
+      icon: 'ep:hot-water',
+      title: '客户端',
+      rank: 0,
+    },
+    children: [
+      {
+        path: '/client/view',
+        name: 'view',
+        meta: { title: '查看客户端', noCache: true },
+        component: async () => await import('@/views/client/viewClient.vue'),
+      },
+
+      {
+        path: '/client/deploy',
+        name: 'deploy',
+        meta: { title: '部署客户端', noCache: true },
+        component: async () => await import('@/views/client/deploy.vue'),
+      },
+      {
+        path: '/client/deployResult',
+        name: 'deployResult',
+        meta: { title: '执行客户端', showLink: false, activePath: '/client/deploy' },
+        component: async () => await import('@/views/client/deployResult.vue'),
       },
     ],
   },
@@ -88,53 +119,6 @@ export default [
         meta: {
           title: '测试页2',
           showLink: true,
-        },
-      },
-    ],
-  },
-  {
-    path: '/test3',
-    component: Layout,
-    redirect: '/test3/t3',
-    meta: {
-      icon: 'ep:home-filled',
-      title: '测试页',
-      rank: 0,
-    },
-    children: [
-      {
-        path: '/test3/t3',
-        name: 'T3',
-        redirect: '/test3/t3/t4',
-        component: () => import('@/views/test/t3.vue'),
-        meta: {
-          title: '测试页3',
-        },
-        children: [
-          {
-            path: '/test3/t3/t4',
-            name: 'T4',
-            component: () => import('@/views/test/t4.vue'),
-            meta: {
-              title: '测试页4',
-            },
-          },
-          {
-            path: '/test3/t3/t5',
-            name: 'T5',
-            component: () => import('@/views/test/t5.vue'),
-            meta: {
-              title: '测试页5',
-            },
-          },
-        ],
-      },
-      {
-        path: '/t6',
-        name: 'T6',
-        component: () => import('@/views/test/t6.vue'),
-        meta: {
-          title: '测试页6',
         },
       },
     ],

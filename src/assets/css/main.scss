@@ -1,0 +1,190 @@
+// 全局变量 / globalVar.scss
+$font-size-normal: 32px;
+$bg-color: #5c6bbf;
+$bg-line: #eeeffd;
+$bg-line-2: #eff4fd;
+$bg-line-3: #f3f5fc;
+$bg-input: #e5eaf8;
+$bg-input-2: #d8d9e6;
+$bg-cancel: rgb(0 0 0 / 3%);
+$bg-btn: #848fca;
+$bg-btn-1: #6478eb;
+$bg-btn-2: #462cd4;
+$status-warn-0: #ce721c;
+$status-warn-1: rgb(255 224 179 / 20%);
+$status-success-0: #1e9955;
+$status-success-1: rgb(187 250 218 / 25%);
+$admin-color: #09c99f;
+$frontColor: rgb(38 38 38 / 100%);
+$frontColor1: rgb(65 63 63 / 90%);
+$frontColor2: rgb(89 89 89 / 100%);
+$frontColor3: rgb(0 0 0 / 85%);
+$frontColor_light: rgb(0 0 0 / 40%);
+$bgColor_block: #002140;
+$box-shadow-app:
+  0 1rem 2em 0 rgb(0 0 0 / 10%),
+  0 0 0 0 rgb(0 0 0 / 3%) !default;
+$fontSize1: 14px;
+
+@import './common';
+@import './antEdit';
+@import './global';
+
+body,
+html {
+  --antd-wave-shadow-color: $bg-color;
+
+  @include scrollbar-style;
+
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  // font-family: 'PingFangSC-Regular,SourceHanSansCN';
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: $frontColor;
+
+  * {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+
+  &.weight-title {
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
+.text-mian-box {
+  padding-top: 16px;
+}
+
+p {
+  &.font-norm-p-16 {
+    font-size: 16px;
+  }
+
+  &.font-norm-p-12 {
+    font-size: 12px;
+  }
+
+  &.font-norm-p-18 {
+    font-size: 18px;
+  }
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}
+
+input {
+  background: rgb(255 255 255 / 0%);
+  border: none;
+  border-style: none;
+  outline: none;
+
+  &:focus {
+    border: none;
+    border-style: none;
+  }
+}
+
+.flex-parent-box {
+  display: flex;
+
+  .flex-item-el {
+    flex: 1;
+  }
+}
+
+.clearfix {
+  zoom: 1;
+
+  &::after {
+    display: table;
+    height: 0;
+    clear: both;
+    content: ' ';
+  }
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+input:disabled {
+  background: #eee;
+}
+
+ul,
+ol,
+li,
+i {
+  text-decoration: none;
+  list-style: none;
+}
+
+.flex-wrap-box {
+  // 强制换行
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.flex-box {
+  display: flex;
+
+  .flex-el,
+  .flex-el-1 {
+    flex: 1;
+  }
+
+  .flex-el-3 {
+    flex: 3;
+  }
+
+  .flex-el-5 {
+    flex: 5;
+  }
+
+  .flex-grow-el {
+    flex-grow: 1;
+  }
+
+  .flex-wrap-el {
+    flex-wrap: wrap;
+    align-content: flex-start;
+  }
+}

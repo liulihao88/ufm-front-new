@@ -4,6 +4,7 @@ import { viteBuildInfo } from './info'
 import svgLoader from 'vite-svg-loader'
 import type { PluginOption } from 'vite'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import path from 'path'
 import { configCompressPlugin } from './compress'
 import removeNoMatch from 'vite-plugin-router-warn'
 import { visualizer } from 'rollup-plugin-visualizer'
@@ -12,6 +13,7 @@ import { themePreprocessorPlugin } from '@pureadmin/theme'
 import { genScssMultipleScopeVars } from '../src/layout/theme'
 import { vitePluginFakeServer } from 'vite-plugin-fake-server'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompression): PluginOption[] {
   const lifecycle = process.env.npm_lifecycle_event
@@ -19,6 +21,12 @@ export function getPluginsList(VITE_CDN: boolean, VITE_COMPRESSION: ViteCompress
     vue(),
     // jsx、tsx语法支持
     vueJsx(),
+    createSvgIconsPlugin({
+      // 指定需要缓存的图标文件夹
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/image/SVG')],
+      // 指定symbolId格式
+      symbolId: 'icon-[dir]-[name]',
+    }),
     codeInspectorPlugin({
       bundler: 'vite',
     }),

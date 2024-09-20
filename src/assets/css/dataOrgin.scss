@@ -1,0 +1,292 @@
+@mixin bg-color {
+  // background: linear-gradient(to top, $bg-line-3 10%, #fff 40%, #fff 50%);
+}
+
+.origin-common-enter {
+  @mixin common {
+    height: calc(100vh - 100px);
+    background: #fff;
+    border: 1px solid #dcdfe4;
+    border-radius: 4px;
+  }
+
+  display: flex;
+  background: #f1f4f9;
+
+  .header-box {
+    position: relative;
+    width: 100%;
+    height: 76px;
+    background: #fff;
+    border-bottom: 1px solid #dcdfe4;
+
+    h2 {
+      position: absolute;
+      top: 26px;
+      left: 24px;
+      padding-left: 36px;
+      font-size: 18px;
+      line-height: 27px;
+
+      img {
+        @include center-l;
+
+        left: 0;
+        width: 24px;
+      }
+    }
+
+    .opration-box {
+      position: absolute;
+      top: 30px;
+      right: 26px;
+
+      img {
+        width: 18px;
+        margin-left: 26px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .ant-layout-sider {
+    background: #eee;
+  }
+
+  .ant-list-items {
+    height: 100vh;
+  }
+
+  .ant-tabs-content-holder {
+    padding: 16px 26px;
+  }
+
+  .title-header {
+    position: relative;
+    z-index: 10;
+    padding-left: 10px;
+    font-size: 16px;
+    font-weight: 600;
+
+    strong {
+      font-size: 17px;
+      color: $bg-color;
+    }
+
+    &::before {
+      @include center-l;
+
+      left: 0;
+      width: 2px;
+      height: 14px;
+      content: '';
+      background: $bg-color;
+    }
+  }
+
+  .layout-item {
+    .new-header {
+      // font-weight: 600;
+      @include title-config1;
+
+      position: relative;
+      padding: 14px;
+      padding-left: 26px;
+
+      // font-size: 16px;
+      line-height: 26px;
+
+      &::before {
+        @include center-l;
+
+        left: 16px;
+        width: 2px;
+        height: 14px;
+        content: '';
+        background: $bg-color;
+      }
+    }
+  }
+
+  .right-file-box {
+    @include scrollbar-style;
+    @include common;
+    @include bg-color;
+
+    position: relative;
+    flex: 4;
+    margin-left: 12px;
+    overflow-y: auto;
+
+    .ant-tabs {
+      height: calc(100vh - 200px);
+    }
+
+    .btn-box {
+      position: absolute;
+      top: calc(100vh - 155px);
+      left: 16px;
+      width: 200px;
+    }
+  }
+
+  .left-box {
+    @include common;
+    @include bg-color;
+
+    position: relative;
+    flex: 1;
+    padding: 14px;
+
+    @media (width <= 1280px) {
+      flex: 1.3;
+    }
+
+    h2 {
+      @include title-config1;
+    }
+
+    .btn-box {
+      position: absolute;
+      top: calc(100vh - 155px);
+      left: 16px;
+
+      .oct-btn-box {
+        flex: auto;
+        margin-right: 12px;
+      }
+
+      .more-box {
+        position: absolute;
+        right: 15px;
+        bottom: 30px;
+        flex: auto;
+        margin: 0;
+        font-size: 12px;
+        box-shadow: 0 0 5px 0 rgb(0 0 0 / 8%);
+
+        li {
+          position: relative;
+          height: 28px;
+          padding: 0 16px;
+          line-height: 28px;
+          cursor: pointer;
+          border-radius: 4px;
+
+          &.export-in {
+            position: relative;
+
+            input {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              opacity: 0;
+            }
+          }
+
+          &:hover {
+            color: $bg-color;
+            background: $bg-input;
+
+            &::after {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 2px;
+              height: 28px;
+              content: '';
+              background: $bg-color;
+            }
+          }
+        }
+      }
+    }
+
+    .list-box {
+      @include scrollbar-style;
+
+      width: 100%;
+      height: calc(100vh - 220px);
+      padding: 10px 0;
+      overflow-y: auto;
+
+      li {
+        position: relative;
+        height: 32px;
+        padding-left: 6px;
+        margin-top: 4px;
+        font-size: 14px;
+        line-height: 32px;
+        color: $frontColor3;
+        cursor: pointer;
+        border-bottom: 1px solid $bg-input;
+        border-radius: 4px;
+
+        .iconfont {
+          color: $bg-color;
+          opacity: 0.7;
+        }
+
+        &:hover {
+          font-weight: 600;
+          color: $bg-color;
+          background: $bg-input;
+        }
+
+        img {
+          @include center-l;
+
+          left: 10px;
+          width: 13px;
+        }
+
+        &.active {
+          width: 100%;
+          font-weight: 600;
+          color: $bg-color;
+          background: $bg-line;
+
+          .op-btn-box {
+            span {
+              font-weight: 600;
+              color: $bg-btn-2;
+            }
+          }
+        }
+
+        .op-btn-box {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 12px;
+          font-weight: 500;
+
+          span {
+            display: inline-block;
+            padding-right: 6px;
+            color: $bg-btn;
+            cursor: pointer;
+
+            &:hover {
+              font-weight: 600;
+              color: $bg-btn-2;
+              opacity: 1;
+            }
+          }
+
+          .f-line {
+            font-size: 10px;
+            font-weight: normal;
+            color: #eee;
+
+            &:hover {
+              color: #eee;
+            }
+          }
+        }
+      }
+    }
+  }
+}

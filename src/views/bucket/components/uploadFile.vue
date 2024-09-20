@@ -36,7 +36,7 @@ const onChange = (file, files) => {
       },
       headers: {
         'Content-type': 'multipart/form-data',
-        Authorization: proxy.getStorage('tenant-token'),
+        Authorization: proxy.getStorage('ufm_token'),
       },
     })
     .then((res) => {

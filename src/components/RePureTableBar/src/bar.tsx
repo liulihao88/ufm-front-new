@@ -192,7 +192,7 @@ export default defineComponent({
 
     return () => (
       <>
-        <div {...attrs} class="w-[99/100] mt-2 px-2 pb-2 bg-bg_color">
+        <div {...attrs} class="w-[99/100] mt-2 px-2 pb-2 bg-bg-color">
           <div class="flex justify-between w-full h-[60px] p-4">
             {slots?.title ? slots.title() : <p class="font-bold truncate">{props.title}</p>}
             <div class="flex items-center justify-around">

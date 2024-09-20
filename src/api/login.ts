@@ -1,4 +1,4 @@
-import request, { requestOld } from '@/utils/request.js'
+import request from '@/utils/request.ts'
 
 export function getTenants() {
   return request('sys/tenant/tenants?filter=Actived', {
@@ -7,12 +7,6 @@ export function getTenants() {
 }
 
 export function login(data) {
-  // return requestOld({
-  //   url: 'auth/signin',
-  //   method: 'put',
-  //   type: 'common',
-  //   data: data,
-  // })
   return request('auth/signin', 'put', { type: 'common', data: data })
 }
 export function encrypt(pwd) {

@@ -166,7 +166,11 @@ export default defineFlatConfig([
           math: 'always',
         },
       ],
-      'no-empty-source': 'off',
+      'no-empty-source': 0,
+      'vue/no-deprecated-v-on-native-modifier': 0,
+      'vue/no-parsing-error': 0,
+      'selector-id-pattern': 0,
+      'font-family-no-missing-generic-family-keyword': 0,
     },
   },
 ])

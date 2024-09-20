@@ -1,10 +1,11 @@
 import { getPluginsList } from './build/plugins'
 import { include, exclude } from './build/optimize'
 import { type UserConfigExport, type ConfigEnv, loadEnv } from 'vite'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 import { root, alias, wrapperEnv, pathResolve, __APP_INFO__ } from './build/utils'
+import config from './src/config/baseConfig.ts'
 const target = 'https://10.0.11.33:8008/'
-// const target = 'https://10.0.11.102:8008/'
 
 export default ({ mode }: ConfigEnv): UserConfigExport => {
   const { VITE_CDN, VITE_PORT, VITE_COMPRESSION, VITE_PUBLIC_PATH } = wrapperEnv(loadEnv(mode, root))
@@ -14,18 +15,34 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
     resolve: {
       alias,
     },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "../src/assets/css/main.scss";',
+        },
+      },
+    },
     // 服务端渲染
     server: {
-      // 端口号
-      port: VITE_PORT,
+      open: false,
+      hmr: true,
+      port: 8099,
       host: '0.0.0.0',
-      // 本地跨域代理 https://cn.vitejs.dev/config/server-options.html#server-proxy
+      https: false,
+      hotOnly: true, // 更新失败不会刷新页面配置
+      disableHostCheck: true,
       proxy: {
         '/api': {
-          target: target,
+          target: config.url,
           changeOrigin: true,
-          secure: false,
+          ws: true,
           rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+        '/bpd101': {
+          target: config.url101,
+          changeOrigin: true,
+          ws: true,
+          rewrite: (path) => path.replace(/^\/bpd101/, ''),
         },
       },
       // 预热文件以提前转换和缓存结果，降低启动期间的初始页面加载时长并防止转换瀑布

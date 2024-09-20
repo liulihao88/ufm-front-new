@@ -1,0 +1,156 @@
+@mixin center-c {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin center-l {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin center-v {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin scrollbar-style {
+  scrollbar-color: (231, 230, 230) rgb(204 204 204 / 30%);
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+
+  // 滚动条整体部分
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  // 滚动条的轨道
+  &::-webkit-scrollbar-track {
+    background: rgb(204 204 204 / 30%);
+    border-radius: 0;
+  }
+
+  // 滚动条里面的小方块
+  &::-webkit-scrollbar-thumb {
+    background: rgb(231 230 230);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: $bg-color;
+  }
+}
+
+.mask-all {
+  // display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0 0 0 / 50%);
+}
+
+@mixin ellipsis-fn {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.btn-more {
+  width: 32px;
+  height: 32px;
+  color: #373f51;
+  text-align: center;
+  cursor: pointer;
+  background: #f3f4f6;
+  border-radius: 4px;
+
+  &:hover {
+    background: $bg-input-2;
+  }
+}
+
+@mixin title-config1 {
+  font-size: 16px;
+  font-weight: normal;
+  color: $bg-color;
+}
+
+$bg-normal: #5db348;
+$bg-normal-2: #508642;
+$bg-error: #e93434;
+$bg-warn: #ff9f43;
+$bg-unkown: #ccc;
+$bg-common: #3366e8;
+
+.status-ufm-el {
+  display: inline-block;
+  padding: 0 8px;
+  margin: 0 auto;
+  font-size: 0.9rem;
+  border-radius: 2px;
+
+  &.status-tag-normal {
+    color: $bg-normal;
+    background: rgb(75 199 111 / 10%);
+    border: 1px solid #89b87d;
+  }
+
+  &.status-tag-error {
+    color: $bg-error;
+    background: rgb(233 52 52 / 10%);
+    border: 1px solid #dd9292;
+  }
+
+  &.status-tag-warn {
+    color: $bg-warn;
+
+    // ffe4ca
+    background: #fff6f0;
+    border: 1px solid #e0b388;
+  }
+
+  &.status-tag-unkown {
+    color: $bg-unkown;
+    background: rgb(214 214 214 / 10%);
+    border: 1px solid #ccc;
+  }
+
+  &.status-tag-common {
+    color: $bg-common;
+    background: #e4e9f5;
+    border: 1px solid #82a0eb;
+  }
+}
+
+.status-ufm-color {
+  &.status-tag-normal {
+    color: $bg-normal;
+  }
+
+  &.status-tag-error {
+    color: $bg-error;
+  }
+
+  &.status-tag-warn {
+    color: $bg-warn;
+  }
+
+  &.status-tag-unkown {
+    color: $bg-unkown;
+  }
+
+  &.status-tag-common {
+    color: $bg-common;
+  }
+}
+
+*:focus {
+  outline: none;
+}
