@@ -22,7 +22,7 @@ let meunDataArr: MeunData[] = [
     child: [
       {
         svg: 'icon_menu_03',
-        name: 'public',
+        name: 'Public',
         path: '/task/public',
         pathName: '公共任务',
         isActive: true,
@@ -36,7 +36,7 @@ let meunDataArr: MeunData[] = [
     child: [
       {
         svg: 'icon_menu_01',
-        name: 'fileEnter',
+        name: 'FileEnter',
         path: '/source/fileEnter',
         pathName: '远程文件系统',
         isActive: true,
@@ -57,21 +57,21 @@ let meunDataArr: MeunData[] = [
     child: [
       {
         svg: 'icon_menu_08',
-        name: 'view',
+        name: 'View',
         path: '/client/view',
         pathName: '查看客户端',
         isActive: false,
       },
       {
         svg: 'icon_menu_07',
-        name: 'deploy',
+        name: 'Deploy',
         path: '/client/deploy',
         pathName: '部署客户端',
         isActive: false,
       },
       {
         svg: 'icon_menu_09',
-        name: 'deployResult',
+        name: 'DeployResult',
         path: '/client/deployResult',
         pathName: '执行客户端',
         isActive: true,

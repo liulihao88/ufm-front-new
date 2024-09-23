@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { nextTick, computed } from 'vue'
 import { isEqual } from '@pureadmin/utils'
 import { useRoute, useRouter } from 'vue-router'
 import { ref, watch, onMounted, toRaw } from 'vue'
@@ -11,11 +12,13 @@ const router = useRouter()
 const routes: any = router.options.routes
 const multiTags: any = useMultiTagsStoreHook().multiTags
 
-const getBreadcrumb = (): void => {
+const getBreadcrumb = async (): void => {
   // 当前路由信息
-  let currentRoute
 
-  if (Object.keys(route.query).length > 0) {
+  let currentRoute
+  if (route?.meta?.dynamicId) {
+    currentRoute = findRouteByPath(router.currentRoute.value.path, routes)
+  } else if (Object.keys(route.query).length > 0) {
     multiTags.forEach((item) => {
       if (isEqual(route.query, item?.query)) {
         currentRoute = toRaw(item)
@@ -93,8 +96,20 @@ watch(
   },
   {
     deep: true,
+    immediate: true,
   },
 )
+
+const handleTitle = (item) => {
+  if (item.name === 'Edit') {
+    if (route.query.id) {
+      return '编辑任务'
+    } else {
+      return '新建任务'
+    }
+  }
+  return item?.meta?.title
+}
 </script>
 
 <template>
@@ -102,7 +117,7 @@ watch(
     <transition-group name="breadcrumb">
       <el-breadcrumb-item v-for="item in levelList" :key="item.path" class="!inline !items-stretch">
         <a @click.prevent="handleLink(item)">
-          {{ item.meta.title }}
+          {{ handleTitle(item) }}
         </a>
       </el-breadcrumb-item>
     </transition-group>

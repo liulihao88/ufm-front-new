@@ -141,7 +141,7 @@ watch(
 )
 
 function closeFn() {
-  router.push({ name: 'public' })
+  router.push({ name: 'Public' })
 }
 const save = async () => {
   await proxy.validForm(formRef.value)
@@ -156,7 +156,7 @@ const save = async () => {
   }
   await saveTaskPublic(mergeForm)
   proxy.$toast('保存成功')
-  router.push({ name: 'public' })
+  router.push({ name: 'Public' })
 }
 async function getFormValue() {
   let mapConfigsData = (await ShineConfigEl.value.postDataFn()) ?? {}

@@ -214,7 +214,7 @@ const restoreRow = (record) => {
   proxy.clearStorage('tabsIndex')
   proxy.setStorage('nodeId', record.nodeId)
   setTaskName(record)
-  router.push({ name: 'edit', query: { id: record.id, type: 'restore' } })
+  router.push({ name: 'Edit', query: { id: record.id, type: 'restore' } })
 }
 const btnModuleRef = ref(null)
 
@@ -318,7 +318,7 @@ const editFn = (record) => {
   proxy.setStorage('nodeId', record.nodeId)
   setTaskName(record)
   // proxy.clearStorage('tabsIndex')
-  router.push({ name: 'edit', query: { id: record.id } })
+  router.push({ name: 'Edit', query: { id: record.id } })
 }
 
 const router = useRouter()
@@ -560,7 +560,7 @@ const handleOk = () => {
   // proxy.clearStorage('tabsIndex')
   isVisible.value = false
   proxy.setStorage('nodeId', currentOwer.nodeId)
-  router.push({ name: 'edit' })
+  router.push({ name: 'Edit' })
 }
 const cancelFn = () => {
   isVisible.value = false
@@ -785,7 +785,7 @@ onUnmounted(() => {
   height: 16px;
   text-align: center;
   cursor: pointer;
-  background: url("../../assets/image/icon_arrow@2x.png") no-repeat center;
+  background: url('../../assets/image/icon_arrow@2x.png') no-repeat center;
   background-size: 100%;
 }
 

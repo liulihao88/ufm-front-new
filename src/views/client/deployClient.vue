@@ -75,7 +75,7 @@
               <a-col :span="24">
                 <a-form-item
                   label=" "
-                  style=" font-family: PingFang; font-size: 14px; font-weight: 500; color: #323233a6;opacity: 1"
+                  style="font-family: PingFang; font-size: 14px; font-weight: 500; color: #323233a6; opacity: 1"
                 >
                   IP地址示例: 10.0.11.34, 10.0.11.4*
                 </a-form-item>
@@ -306,7 +306,7 @@ const saveInfoFn = async () => {
 
   // isShow.value = true
   proxy.setStorage('deployConfig', deployConfig.value)
-  router.push({ name: 'deployResult' })
+  router.push({ name: 'DeployResult' })
 }
 
 const isChecked = () => {
