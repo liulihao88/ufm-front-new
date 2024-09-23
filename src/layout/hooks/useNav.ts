@@ -15,7 +15,6 @@ import { usePermissionStoreHook } from '@/store/modules/permission'
 import ExitFullscreen from '@iconify-icons/ri/fullscreen-exit-fill'
 import Fullscreen from '@iconify-icons/ri/fullscreen-fill'
 import { clearStorage } from 'oeos-components'
-import { formatImg } from '@/utils/gFunc.ts'
 
 const errorInfo = 'The current routing configuration is incorrect, please check the configuration'
 
@@ -124,10 +123,11 @@ export function useNav() {
     return remainingPaths.includes(path)
   }
 
-  /** 获取`logo` */
   function getLogo() {
-    return formatImg('logo@2x-blue.png')
+    return '@/assets/image/logo@2x-blue.png'
   }
+
+  /** 获取`logo` */
 
   return {
     route,

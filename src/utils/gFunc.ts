@@ -33,18 +33,3 @@ export function md5EncryptToBytes(pwd, toByte = false) {
 export function test() {
   return 'isTest'
 }
-
-export function formatImg(photoName, addPath = '', { basePath = 'assets/image' } = {}) {
-  if (photoName.startsWith('http') || photoName.startsWith('https')) {
-    return photoName
-  }
-  if (photoName.indexOf('.') === -1) {
-    photoName = photoName + '.png'
-  }
-  const addLastSlash = addPath.endsWith('/') || !addPath ? addPath : `${addPath}/`
-  const addLastBasePathSlash = basePath.endsWith('/') || !basePath ? basePath : `${basePath}/`
-  let mergeSrc = `${addLastSlash}${photoName}`
-  const finalImg = `${addLastBasePathSlash}${mergeSrc}`
-  let res = new URL(`../${finalImg}`, import.meta.url).href
-  return res
-}

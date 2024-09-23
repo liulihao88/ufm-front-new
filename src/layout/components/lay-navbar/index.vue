@@ -66,7 +66,7 @@ const modifyPwd = () => {
       <!-- 退出登录 -->
       <el-dropdown trigger="hover">
         <span class="el-dropdown-link navbar-bg-hover select-none">
-          <img :src="proxy.formatImg('logo@2x-blue')" :style="avatarsStyle" />
+          <img src="@/assets/image/logo@2x-blue.png" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>

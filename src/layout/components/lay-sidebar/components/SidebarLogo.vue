@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import { getTopMenu } from '@/router/utils'
 import { useNav } from '@/layout/hooks/useNav'
-import { formatImg } from '@/utils/gFunc.ts'
 
 defineProps({
   collapse: Boolean,
 })
 
 const { title, getLogo } = useNav()
-
-const localFormat = () => {
-  return new URL(`../../../../assets/image/logo@2x-blue.png`, import.meta.url).href
-}
 </script>
 
 <template>
@@ -29,12 +24,9 @@ const localFormat = () => {
       </router-link>
       <router-link v-else key="expand" :title="title" class="sidebar-logo-link" :to="getTopMenu()?.path ?? '/'">
         <img src="@/assets/image/logo@2x-blue.png" alt="logo" class="w-30" />
-        <img :src="getLogo()" alt="logo" class="w-20" />
-        <img :src="formatImg('logo@2x-blue.png')" alt="logo" class="w-10" />
-        <img :src="localFormat()" alt="logo" class="w-10" />
-        <o-tooltip :content="title" width="100px">
-          <span class="sidebar-title">{{ title }}</span>
-        </o-tooltip>
+        <!-- <o-tooltip  width="100px" :content="title"> -->
+        <span class="sidebar-title">{{ title }}</span>
+        <!-- </o-tooltip> -->
       </router-link>
     </transition>
   </div>
