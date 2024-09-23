@@ -32,7 +32,7 @@ defineExpose({
 
 <template>
   <el-form ref="formRef" :model="form" :rules="rules" label-width="auto" @submit.native.prevent>
-    <el-form-item label="连接" prop="stringTemplate">
+    <el-form-item label="字符串拼接" prop="stringTemplate">
       <o-input v-model="form.stringTemplate" v-focus />
     </el-form-item>
   </el-form>

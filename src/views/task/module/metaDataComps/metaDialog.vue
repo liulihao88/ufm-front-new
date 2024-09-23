@@ -35,9 +35,9 @@ const currentInjector = ref()
 
 const map = {
   Constant: '常量',
-  Contains: '包含',
-  Concat: '连接',
-  Replace: '替换',
+  Contains: '包含判断',
+  Concat: '字符串拼接',
+  Replace: '字符串替换',
   Substring: '子字符串',
   Regex: '正则表达式',
   FileProperty: '文件属性',

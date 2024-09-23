@@ -72,7 +72,7 @@ defineExpose({
     <el-form-item label="正则表达式" prop="regex">
       <el-switch v-model="form.regex" />
     </el-form-item>
-    <el-form-item label="替换为" prop="replaceWith">
+    <el-form-item label="字符串替换为" prop="replaceWith">
       <o-input v-model="form.replaceWith" />
     </el-form-item>
   </el-form>

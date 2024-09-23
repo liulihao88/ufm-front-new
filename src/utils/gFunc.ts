@@ -34,7 +34,7 @@ export function test() {
   return 'isTest'
 }
 
-export function formatImg(photoName, addPath = '', { basePath = '../assets/image' } = {}) {
+export function formatImg(photoName, addPath = '', { basePath = 'assets/image' } = {}) {
   if (photoName.startsWith('http') || photoName.startsWith('https')) {
     return photoName
   }
@@ -44,9 +44,7 @@ export function formatImg(photoName, addPath = '', { basePath = '../assets/image
   const addLastSlash = addPath.endsWith('/') || !addPath ? addPath : `${addPath}/`
   const addLastBasePathSlash = basePath.endsWith('/') || !basePath ? basePath : `${basePath}/`
   let mergeSrc = `${addLastSlash}${photoName}`
-  console.log(`66 addLastBasePathSlash`, addLastBasePathSlash)
-  console.log(`46 mergeSrc`, mergeSrc)
-  // '../assets/images/1.png'
-  let res = new URL(`${addLastBasePathSlash}${mergeSrc}`, import.meta.url).href
+  const finalImg = `${addLastBasePathSlash}${mergeSrc}`
+  let res = new URL(`../${finalImg}`, import.meta.url).href
   return res
 }

@@ -32,7 +32,9 @@ const localFormat = () => {
         <img :src="getLogo()" alt="logo" class="w-20" />
         <img :src="formatImg('logo@2x-blue.png')" alt="logo" class="w-10" />
         <img :src="localFormat()" alt="logo" class="w-10" />
-        <span class="sidebar-title">{{ title }}</span>
+        <o-tooltip :content="title" width="100px">
+          <span class="sidebar-title">{{ title }}</span>
+        </o-tooltip>
       </router-link>
     </transition>
   </div>
