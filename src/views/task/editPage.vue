@@ -10,6 +10,10 @@ import workConfig from './module/workConfig.vue'
 import metaData from './module/metaDataComps/metaData.vue'
 import { getDs, getTaskDetails, previewChange, saveTaskPublic } from '@/server/editApi.js'
 
+defineOptions({
+  name: 'Edit',
+})
+
 const router = useRouter()
 const route = useRoute()
 

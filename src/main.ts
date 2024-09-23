@@ -67,9 +67,10 @@ import OeosComponents, { utils } from 'oeos-components'
 Object.keys(utils).forEach((v) => {
   app.config.globalProperties[v] = utils[v]
 })
-import * as localUtils from '@/utils/gFunc.ts'
-Object.keys(localUtils).forEach((v) => {
-  app.config.globalProperties[v] = localUtils[v]
+
+import * as gFunc from '@/utils/gFunc.ts'
+Object.keys(gFunc).forEach((v) => {
+  app.config.globalProperties[v] = gFunc[v]
 })
 
 // 引入全局组件

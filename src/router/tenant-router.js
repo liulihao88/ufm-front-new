@@ -1,6 +1,18 @@
 const Layout = () => import('@/layout/index.vue')
 export default [
   {
+    path: '/',
+    name: 'Home',
+    component: Layout,
+    redirect: '/task',
+    meta: {
+      icon: 'ep:home-filled',
+      title: '任务',
+      rank: 0,
+    },
+    children: [],
+  },
+  {
     path: '/task',
     name: 'Task',
     component: Layout,
@@ -24,24 +36,14 @@ export default [
         },
         children: [
           {
-            path: '/task/edit:id?',
+            path: '/task/edit',
             name: 'Edit',
-            beforeEnter: (to, from, next) => {
-              // if (to.query.id) {
-              //   // 如果存在 id 参数，则表示正在编辑任务
-              //   to.meta.title = '编辑任务1'
-              // } else {
-              //   // 如果不存在 id 参数，则表示正在添加任务
-              //   to.meta.title = '新增任务2'
-              // }
-              next()
-            },
             meta: {
               title: '新增任务3',
               showLink: false,
               showParent: true,
               activePath: '/task/public',
-              dynamicId: true,
+              keepAlive: true,
             },
             component: async () => await import('@/views/task/editPage.vue'),
           },
@@ -100,10 +102,24 @@ export default [
         component: async () => await import('@/views/client/deploy.vue'),
       },
       {
-        path: '/client/deployResult',
-        name: 'DeployResult',
-        meta: { title: '执行客户端', showLink: true, activePath: '/client/deploy' },
-        component: async () => await import('@/views/client/deployResult.vue'),
+        path: '/client/deploy',
+        meta: {
+          title: '部署客户端',
+        },
+        children: [
+          {
+            path: '/client/deployResult',
+            name: 'DeployResult',
+            meta: {
+              title: '执行客户端',
+              activePath: '/client/deploy',
+              showLink: false,
+
+              keepAlive: true,
+            },
+            component: async () => await import('@/views/client/deployResult.vue'),
+          },
+        ],
       },
     ],
   },
@@ -168,6 +184,37 @@ export default [
         component: () => import('@/views/test/t3.vue'),
         meta: {
           title: '测试页3',
+          showLink: true,
+        },
+      },
+    ],
+  },
+  {
+    path: '/test4',
+    component: Layout,
+    redirect: '/test/t4',
+    meta: {
+      icon: 'ep:home-filled',
+      title: '测试页',
+      rank: 0,
+      showLink: import.meta.env.MODE === 'development',
+    },
+    children: [
+      {
+        path: '/test/t4',
+        name: 'T4',
+        component: () => import('@/views/test/t4.vue'),
+        meta: {
+          title: '测试页4',
+          showLink: true,
+        },
+      },
+      {
+        path: '/test/t44',
+        name: 'T44',
+        component: () => import('@/views/test/t44.vue'),
+        meta: {
+          title: '测试页44',
           showLink: true,
         },
       },

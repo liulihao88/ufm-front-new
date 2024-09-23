@@ -587,6 +587,8 @@ onUnmounted(() => {
 </script>
 <style scoped lang="scss">
 .content-box {
+  padding: 8px;
+
   .card-box {
     display: flex;
     flex-wrap: wrap;

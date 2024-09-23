@@ -172,7 +172,7 @@
 import type { TableColumnsType } from 'ant-design-vue'
 import { h, ref, getCurrentInstance, onUnmounted, reactive } from 'vue'
 import config from '@/config/baseConfig.ts'
-import { useRouter } from 'vue-router'
+import { useDetail } from './hooks'
 import BtnModule from './module/btnModule.vue'
 import StatusModule from './module/statusModule.vue'
 import {
@@ -185,6 +185,8 @@ import {
   uclientlistAPI,
 } from '@/server/API/task'
 const { proxy } = getCurrentInstance()
+const { toDetail, router } = useDetail()
+// const router = useRouter()
 
 const timer = ref(null)
 const star = ref('*')
@@ -215,6 +217,7 @@ const restoreRow = (record) => {
   proxy.setStorage('nodeId', record.nodeId)
   setTaskName(record)
   router.push({ name: 'Edit', query: { id: record.id, type: 'restore' } })
+  toDetail({ id: record.id, type: 'restore', name: record.name }, 'query')
 }
 const btnModuleRef = ref(null)
 
@@ -223,9 +226,7 @@ const pagination = ref({
   defaultPageSize: 20,
   total: () => tableData.value.length,
   showTotal: () => `共 ${tableData.value.length} 条`,
-  showSizeChange: (num) => {
-    console.log(`85 num`, num)
-  },
+  showSizeChange: (num) => {},
   onChange: (num: number) => {
     pagination.value.current = num
   },
@@ -297,6 +298,11 @@ const showNewFn: void = () => {
     return false
   }
 
+  if (proxy.$dev) {
+    handleOk()
+    return
+  }
+
   isVisible.value = true
 }
 
@@ -317,11 +323,9 @@ const editFn = (record) => {
   }
   proxy.setStorage('nodeId', record.nodeId)
   setTaskName(record)
-  // proxy.clearStorage('tabsIndex')
-  router.push({ name: 'Edit', query: { id: record.id } })
+  toDetail({ id: record.id, name: record.name }, 'query')
 }
 
-const router = useRouter()
 const expandedRowKeys: any = ref()
 expandedRowKeys.value = ['']
 const setTaskName = (record) => {
@@ -502,8 +506,6 @@ const changeFilterFn = (selectValue, selectStrValue, searchValue) => {
       return res
     })
   }
-  console.log(`45 selectStrValue`, selectStrValue)
-  console.log(`44 selectFilterTable`, selectFilterTable)
   // let selectFilterValue = []
   if (!searchValue && (selectStrValue.length === 0 || selectStrValue.length === 4)) {
     tableData.value = proxy.clone(selectFilterTable)
@@ -560,7 +562,8 @@ const handleOk = () => {
   // proxy.clearStorage('tabsIndex')
   isVisible.value = false
   proxy.setStorage('nodeId', currentOwer.nodeId)
-  router.push({ name: 'Edit' })
+  // router.push({ path: '/task/edit' })
+  toDetail({ id: '' }, 'query')
 }
 const cancelFn = () => {
   isVisible.value = false

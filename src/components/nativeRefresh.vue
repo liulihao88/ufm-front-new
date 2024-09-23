@@ -46,8 +46,9 @@ defineExpose({
     v-show="isDev"
     id="nativeRefreshBtn"
     type="danger"
-    class="po-f r-50% t-8 z-900"
+    class="po-f r-50% t-8"
     size="small"
+    style="z-index: 9999"
     @click="nativeRefresh"
   >
     刷新
@@ -56,7 +57,8 @@ defineExpose({
     v-if="proxy.$test"
     id="nativeRefreshBtn"
     :type="isDev ? 'danger' : 'primary'"
-    class="po-f r-40% t-8 z-900"
+    class="po-f r-40% t-8"
+    style="z-index: 9999"
     size="small"
     @click="changeMode"
   >

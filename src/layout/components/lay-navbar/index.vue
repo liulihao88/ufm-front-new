@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { unref, ref } from 'vue'
+import { unref, ref, getCurrentInstance } from 'vue'
 import { useNav } from '@/layout/hooks/useNav'
 import LaySearch from '../lay-search/index.vue'
 import LayNotice from '../lay-notice/index.vue'
@@ -13,6 +13,7 @@ import ModifyPwd from '@/layout/components/lay-navbar/modifyPwd.vue'
 import LogoutCircleRLine from '@iconify-icons/ri/logout-circle-r-line'
 import Setting from '@iconify-icons/ri/settings-3-line'
 import RefreshRight from '@iconify-icons/ep/refresh-right'
+const { proxy } = getCurrentInstance()
 const { layout, device, logout, onPanel, pureApp, username, userAvatar, avatarsStyle, toggleSideBar } = useNav()
 import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
@@ -65,7 +66,7 @@ const modifyPwd = () => {
       <!-- 退出登录 -->
       <el-dropdown trigger="hover">
         <span class="el-dropdown-link navbar-bg-hover select-none">
-          <img :src="userAvatar" :style="avatarsStyle" />
+          <img :src="proxy.formatImg('logo@2x-blue')" :style="avatarsStyle" />
           <p v-if="username" class="dark:text-white">{{ username }}</p>
         </span>
         <template #dropdown>
