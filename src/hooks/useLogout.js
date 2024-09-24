@@ -15,6 +15,7 @@ export default function useLogout() {
     }
     const { changeTaskValue } = useGlobalStore()
     clearStorage('ufm_token')
+    clearStorage('ufm-task-number')
     changeTaskValue('', '')
     if (router) {
       router.replace({ name: 'Login' })

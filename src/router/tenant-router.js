@@ -5,12 +5,11 @@ export default [
     name: 'Home',
     component: Layout,
     redirect: '/task',
-    meta: {
-      icon: 'ep:home-filled',
-      title: '任务',
-      rank: 0,
-    },
     children: [],
+    meta: {
+      title: false,
+      rank: 1,
+    },
   },
   {
     path: '/task',
@@ -19,7 +18,7 @@ export default [
     redirect: '/task/public',
     meta: {
       icon: 'ep:home-filled',
-      title: '任务',
+      title: false,
       rank: 1,
     },
     children: [
@@ -129,7 +128,7 @@ export default [
     redirect: '/test/t1',
     meta: {
       icon: 'ep:home-filled',
-      title: '测试页',
+      title: false,
       rank: 0,
       showLink: import.meta.env.MODE === 'development',
     },
@@ -151,7 +150,7 @@ export default [
     redirect: '/test/t2',
     meta: {
       icon: 'ep:home-filled',
-      title: '测试页',
+      title: false,
       rank: 0,
       showLink: import.meta.env.MODE === 'development',
     },
@@ -173,7 +172,7 @@ export default [
     redirect: '/test/t3',
     meta: {
       icon: 'ep:home-filled',
-      title: '测试页',
+      title: false,
       rank: 0,
       showLink: import.meta.env.MODE === 'development',
     },
@@ -195,7 +194,7 @@ export default [
     redirect: '/test/t4',
     meta: {
       icon: 'ep:home-filled',
-      title: '测试页',
+      title: false,
       rank: 0,
       showLink: import.meta.env.MODE === 'development',
     },
