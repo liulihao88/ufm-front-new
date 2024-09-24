@@ -130,7 +130,7 @@ defineExpose({
 <template>
   <div>
     <!-- <el-button type="primary" @click="testData" v-if="proxy.$dev">测试值</el-button> -->
-    <el-form ref="formRef" :model="form" :rules="rules">
+    <el-form ref="formRef" :model="form" :rules="rules" label-width="auto">
       <el-form-item label="开启自动暂停" prop="name">
         <el-switch v-model="form.enableAutomaticPause" />
       </el-form-item>

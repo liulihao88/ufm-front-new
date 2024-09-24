@@ -19,7 +19,7 @@ import {
   formatFlatteningRoutes,
 } from './utils'
 import { type Router, createRouter, type RouteRecordRaw, type RouteComponent } from 'vue-router'
-import { getStorage } from 'oeos-components'
+import { getStorage, setStorage, $toast } from 'oeos-components'
 import { type DataInfo, userKey, removeToken, multipleTabsKey } from '@/utils/auth'
 
 /** 自动导入全部静态路由，无需再手动引入！匹配 src/router/modules 目录（任何嵌套级别）中具有 .ts 扩展名的所有文件，除了 remaining.ts 文件
@@ -184,6 +184,22 @@ router.beforeEach((to: ToRouteType, _from, next) => {
     }
   }
 })
+
+router.onError(
+  (() => {
+    // 只有onError且首次加载的时候才执行
+    let errorRefreshPage = getStorage('errorRefreshPage', true)
+    return (error, to) => {
+      if (error.message.includes('Failed to fetch dynamically imported module') && !errorRefreshPage) {
+        setStorage('errorRefreshPage', true, true)
+        $toast('检测到有模块更新，即将刷新页面!', 'error')
+        setTimeout(() => {
+          window.location.href = to.fullPath
+        }, 2000)
+      }
+    }
+  })(),
+)
 
 router.afterEach(() => {
   NProgress.done()

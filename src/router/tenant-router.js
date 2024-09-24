@@ -39,7 +39,7 @@ export default [
             path: '/task/edit',
             name: 'Edit',
             meta: {
-              title: '新增任务3',
+              title: '我的任务',
               showLink: false,
               showParent: true,
               activePath: '/task/public',

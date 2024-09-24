@@ -44,7 +44,7 @@ const router = useRouter()
 const devTest = () => {
   if (proxy.$dev) {
     form.value.username = 'admin'
-    form.value.password = 'admin'
+    form.value.password = 'adminadmin'
   }
 }
 devTest()
@@ -72,7 +72,6 @@ const passwordKeyFn = () => {
         proxy.$toast('登录成功！')
         proxy.setStorage('userInfo', loginRes.data)
         proxy.setStorage('ufm_token', `OCTSYSJA ${loginRes.data.accessToken}`)
-        // router.push('/task/public')
         router.push('/task/public')
       })
     })

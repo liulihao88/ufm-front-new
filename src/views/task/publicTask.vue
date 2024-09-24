@@ -559,11 +559,11 @@ const handleOk = () => {
     proxy.$toast('请先选择所有者！', 'w')
     return false
   }
-  // proxy.clearStorage('tabsIndex')
   isVisible.value = false
   proxy.setStorage('nodeId', currentOwer.nodeId)
-  // router.push({ path: '/task/edit' })
-  toDetail({ id: '' }, 'query')
+  let taskNum = proxy.getStorage('ufm-task-number') || 1
+  proxy.setStorage('ufm-task-number', Number(taskNum) + 1)
+  toDetail({ index: taskNum }, 'query')
 }
 const cancelFn = () => {
   isVisible.value = false

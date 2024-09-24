@@ -265,7 +265,6 @@ defineExpose({
   <div class="table-box">
     <div class="f m-b-16">
       <el-switch v-model="form.enableMetaDataInject" class="custom-switch" active-text="开启元数据提取" />
-      <!-- <el-button type="primary" @click="isTest83" class="ml2" v-if="proxy.$dev">测试保存35</el-button> -->
       <el-button type="primary" :disabled="!form.enableMetaDataInject" class="ml2" @click="addNew">新增</el-button>
     </div>
     <el-form ref="formRef" :model="form" size="small" @submit.native.prevent>

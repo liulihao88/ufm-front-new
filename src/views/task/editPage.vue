@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, getCurrentInstance, computed, watch } from 'vue'
 const { proxy } = getCurrentInstance()
-import { useRouter, useRoute } from 'vue-router'
 import ShineEdit from './module/shineEdit.vue'
 import MigrationConfig from './module/migrationConfig.vue'
 import DiscoverConfig from './module/discoverConfig.vue'
 import workConfig from './module/workConfig.vue'
+import { useDetail } from './hooks'
+
+import { useRoute } from 'vue-router'
+const route = useRoute()
 
 import metaData from './module/metaDataComps/metaData.vue'
 import { getDs, getTaskDetails, previewChange, saveTaskPublic } from '@/server/editApi.js'
@@ -14,8 +17,7 @@ defineOptions({
   name: 'Edit',
 })
 
-const router = useRouter()
-const route = useRoute()
+const { toDetail, router } = useDetail()
 
 const nodeId = ref()
 const gScriptRef = ref(null)
@@ -158,9 +160,9 @@ const save = async () => {
   if (mergeForm.type === 'SYNC' && proxy.isEmpty(mergeForm.discoverConf.triggerCron)) {
     return proxy.$toast('同步模式下不允许设置发现配置的触发周期为单次, 请修改后提交', 'e')
   }
-  await saveTaskPublic(mergeForm)
+  let res = await saveTaskPublic(mergeForm)
   proxy.$toast('保存成功')
-  router.push({ name: 'Public' })
+  toDetail({ id: res.id, name: res.name }, 'query')
 }
 async function getFormValue() {
   let mapConfigsData = (await ShineConfigEl.value.postDataFn()) ?? {}
@@ -236,13 +238,6 @@ const previewTypeChange = async (value) => {
   }
   form.value = res
 }
-const clearHourChangeFn = (val: number) => {
-  if (val > 0) {
-    form.value.periodInHour = val
-  } else {
-    form.value.periodInHour = 0
-  }
-}
 </script>
 
 <template>
@@ -291,35 +286,25 @@ const clearHourChangeFn = (val: number) => {
             <DiscoverConfig ref="DiscoverRef" :isNew="isNew" :discoverConf="form.discoverConf" :modelType="form.type" />
           </template>
           <template #4>
-            <div class="info-box">
-              <a-form-item label="是否开启管理控制" name="username" :rules="[{ required: false }]">
-                <a-switch v-model:checked="form.enableMetaDataInject" size="small" :disabled="true" />
-              </a-form-item>
+            <div class="f">
+              <el-switch
+                v-model="form.enableMetaDataInject"
+                class="custom-switch mr2"
+                disabled
+                active-text="开启管理控制"
+              />
             </div>
           </template>
           <template #5>
-            <div class="info-box">
-              <a-form-item label="是否设置清理" name="username" :rules="[{ required: false }]">
-                <div class="f-st-ct">
-                  <div class="m-r-16">
-                    <a-switch v-model:checked="isKeep" size="small" />
-                  </div>
-                  <div class="hour-box">
-                    <a-input-number
-                      v-model:value="form.periodInHour"
-                      :min="0"
-                      :max="10000000"
-                      :disabled="!isKeep"
-                      style="width: 70px"
-                      :bordered="true"
-                      @change="clearHourChangeFn"
-                    />
-                    <span class="m-l-8">
-                      {{ `小时 ( 每 ${form.periodInHour} 小时将保持元数据同步，清理目标元数据 [不清理文件] )` }}
-                    </span>
-                  </div>
-                </div>
-              </a-form-item>
+            <div class="info-box f">
+              <el-switch v-model="isKeep" class="custom-switch mr2" active-text="设置清理" />
+
+              <div class="hour-box">
+                <o-input v-model="form.periodInHour" v-number :min="0" :disabled="!isKeep" width="100" />
+                <span class="m-l-8">
+                  {{ `小时 ( 每 ${form.periodInHour} 小时将保持元数据同步，清理目标元数据 [不清理文件] )` }}
+                </span>
+              </div>
             </div>
           </template>
           <template #6>
@@ -337,3 +322,20 @@ const clearHourChangeFn = (val: number) => {
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+:deep(.custom-switch .el-switch__label--right) {
+  order: 1; /* 将active-text放在左边 */
+  margin-right: 8px;
+}
+
+.custom-switch {
+  display: flex;
+  flex-direction: row-reverse; /* 反转子元素的顺序 */
+  align-items: center;
+}
+
+.custom-switch .el-switch__label--left {
+  order: 2; /* 将inactive-text放在右边 */
+}
+</style>

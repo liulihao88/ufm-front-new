@@ -64,6 +64,7 @@ service.interceptors.response.use(
     return Promise.reject(res)
   },
   (error) => {
+    console.log(`15 error`, error)
     closeLoading()
     // 对响应错误做点什么
     if (error.message.indexOf('timeout') != -1) {
@@ -89,6 +90,9 @@ export function closeLoading() {
 
 export function handleMoreError(errorData) {
   if (errorData.status === 401) {
+    if (errorData.message) {
+      $toast(errorData.message, 'e')
+    }
     return router.push({ name: 'login' })
   }
   const { message, details } = errorData

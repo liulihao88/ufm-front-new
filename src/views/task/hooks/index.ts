@@ -22,7 +22,7 @@ export function useDetail() {
         name: 'Edit',
         query: parameter,
         meta: {
-          title: parameter.id ? `编辑任务-${parameter.name}` : '新增任务',
+          title: parameter.id ? `任务-${parameter.name}` : `我的任务${parameter.index}`,
           // 如果使用的是非国际化精简版title可以像下面这么写
           // title: `No.${index} - 详情信息`,
           // 最大打开标签数
@@ -33,19 +33,16 @@ export function useDetail() {
       router.push({ name: 'Edit', query: parameter })
     } else if (model === 'params') {
       useMultiTagsStoreHook().handleTags('push', {
-        path: `/tabs/edit/:id`,
-        name: 'TabParamsDetail',
+        path: `/tabs/edit/:number`,
+        name: 'Edit',
         params: parameter,
         meta: {
-          title: {
-            zh: `No.${parameter.id} - 详情信息`,
-            en: `No.${parameter.id} - DetailInfo`,
-          },
+          title: `新增任务-${parameter.number}`,
           // 如果使用的是非国际化精简版title可以像下面这么写
           // title: `No.${index} - 详情信息`,
         },
       })
-      router.push({ name: 'TabParamsDetail', params: parameter })
+      router.push({ name: 'Edit', params: parameter })
     }
   }
 
