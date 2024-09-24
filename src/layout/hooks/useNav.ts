@@ -78,10 +78,9 @@ export function useNav() {
 
   /** 退出登录 */
   function logout() {
-    clearStorage('token')
+    clearStorage('ufm_token')
     let nowPath = router.currentRoute.value.path
     console.log(`85 nowPath`, nowPath)
-    // proxy.log(`router`, router, '82行 src/layout/hooks/useNav.ts')
     console.log(`95 router`, router)
     router.push(`/login?redirect=${nowPath}`)
   }

@@ -14,10 +14,10 @@ export default function useLogout() {
       })
     }
     const { changeTaskValue } = useGlobalStore()
-    clearStorage()
+    clearStorage('ufm_token')
     changeTaskValue('', '')
     if (router) {
-      router.replace({ name: 'login' })
+      router.replace({ name: 'Login' })
     }
   }
   return {

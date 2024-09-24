@@ -9,12 +9,14 @@ import LaySidebarBreadCrumb from '../lay-sidebar/components/SidebarBreadCrumb.vu
 import LaySidebarTopCollapse from '../lay-sidebar/components/SidebarTopCollapse.vue'
 import { handleAliveRoute, getTopMenu } from '@/router/utils'
 import ModifyPwd from '@/layout/components/lay-navbar/modifyPwd.vue'
+import UseLogout from '@/hooks/useLogout.js'
+const { toLogin } = UseLogout()
 
 import LogoutCircleRLine from '@iconify-icons/ri/logout-circle-r-line'
 import Setting from '@iconify-icons/ri/settings-3-line'
 import RefreshRight from '@iconify-icons/ep/refresh-right'
 const { proxy } = getCurrentInstance()
-const { layout, device, logout, onPanel, pureApp, username, userAvatar, avatarsStyle, toggleSideBar } = useNav()
+const { layout, device, onPanel, pureApp, username, userAvatar, avatarsStyle, toggleSideBar } = useNav()
 import { useRouter, useRoute } from 'vue-router'
 const router = useRouter()
 const route = useRoute()
@@ -52,7 +54,10 @@ const modifyPwd = () => {
         </o-tooltip>
       </div>
 
-      <div class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover m-r-10" @click="logout">
+      <div
+        class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover m-r-10"
+        @click="toLogin(true)"
+      >
         <o-tooltip content="退出系统">
           <IconifyIconOffline :icon="LogoutCircleRLine" style="margin: 5px" />
         </o-tooltip>
@@ -62,7 +67,7 @@ const modifyPwd = () => {
       <!-- 全屏 -->
       <LaySidebarFullScreen id="full-screen" />
       <!-- 消息通知 -->
-      <LayNotice id="header-notice" />
+      <!-- <LayNotice id="header-notice" /> -->
       <!-- 退出登录 -->
       <el-dropdown trigger="hover">
         <span class="el-dropdown-link navbar-bg-hover select-none">
@@ -75,7 +80,7 @@ const modifyPwd = () => {
               <o-icon name="edit" class="po-r" />
               修改密码
             </el-dropdown-item>
-            <el-dropdown-item @click="logout">
+            <el-dropdown-item @click="toLogin">
               <IconifyIconOffline :icon="LogoutCircleRLine" class="m-r-8" />
               退出系统
             </el-dropdown-item>

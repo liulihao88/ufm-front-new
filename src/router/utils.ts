@@ -123,6 +123,7 @@ function addPathMatch() {
 
 /** 处理动态路由（后端返回的路由） */
 function handleAsyncRoutes(routeList) {
+  console.log(`05 routeList`, routeList)
   if (routeList.length === 0) {
     usePermissionStoreHook().handleWholeMenus(routeList)
   } else {
@@ -157,7 +158,7 @@ function initRouter() {
   if (getConfig()?.CachingAsyncRoutes) {
     // 开启动态路由缓存本地localStorage
     const key = 'async-routes'
-    const asyncRouteList = storageLocal().getItem(key) as any
+    const asyncRouteList = storageLocal().getItem(key) || []
     if (asyncRouteList && asyncRouteList?.length > 0) {
       return new Promise((resolve) => {
         handleAsyncRoutes(asyncRouteList)

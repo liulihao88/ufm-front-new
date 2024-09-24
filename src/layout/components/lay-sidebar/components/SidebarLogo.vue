@@ -24,9 +24,7 @@ const { title, getLogo } = useNav()
       </router-link>
       <router-link v-else key="expand" :title="title" class="sidebar-logo-link" :to="getTopMenu()?.path ?? '/'">
         <img src="@/assets/image/logo@2x-blue.png" alt="logo" class="w-30" />
-        <!-- <o-tooltip  width="100px" :content="title"> -->
         <span class="sidebar-title">{{ title }}</span>
-        <!-- </o-tooltip> -->
       </router-link>
     </transition>
   </div>
