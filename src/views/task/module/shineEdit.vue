@@ -249,11 +249,11 @@ const handleAdd = async () => {
 
   dataSource.value.push(newData)
   let localLinkValue = linkData.value[0]?.value ?? ''
+  let localLinkValue2 = linkData.value[1]?.value ?? ''
   if (localLinkValue) {
     if (proxy.$dev) {
-      console.log(`66 localLinkValue`, localLinkValue)
-      newData.right.linkVal = localLinkValue
       newData.left.linkVal = localLinkValue
+      newData.right.linkVal = localLinkValue2
       await proxy.sleep(200)
       leftSelectRef.value.$refs.selectRef.$emit('change', newData.left.linkVal)
       await proxy.sleep(200)
@@ -263,7 +263,7 @@ const handleAdd = async () => {
         dataSource.value[dataSource.value.length - 1].left.spaceData?.[0]?.value ?? ''
       await proxy.sleep(200)
       dataSource.value[dataSource.value.length - 1].right.spaceVal =
-        dataSource.value[dataSource.value.length - 1].right.spaceData?.[1]?.value ?? ''
+        dataSource.value[dataSource.value.length - 1].right.spaceData?.[0]?.value ?? ''
     }
   }
 }

@@ -7,42 +7,48 @@ export function useDetail() {
   const router = useRouter()
   const getParameter = isEmpty(route.params) ? route.query : route.params
 
-  function toDetail(parameter: LocationQueryRaw | RouteParamsRaw, model: 'query' | 'params') {
+  function toDetail(parameter: LocationQueryRaw | RouteParamsRaw, model: 'query' | 'replace') {
     // ⚠️ 这里要特别注意下，因为vue-router在解析路由参数的时候会自动转化成字符串类型，比如在使用useRoute().route.query或useRoute().route.params时，得到的参数都是字符串类型
     // 所以在传参的时候，如果参数是数字类型，就需要在此处 toString() 一下，保证传参跟路由参数类型一致都是字符串，这是必不可少的环节！！！
     Object.keys(parameter).forEach((param) => {
       if (!isString(parameter[param])) {
-        parameter[param] = parameter[param].toString()
+        parameter[param] = parameter[param]?.toString()
       }
     })
+
+    let nowRoute = {
+      path: `/task/edit`,
+      name: 'Edit',
+      query: parameter,
+      meta: {
+        title: parameter.id ? `任务-${parameter.name}` : `新建任务-${parameter.index}`,
+        // 如果使用的是非国际化精简版title可以像下面这么写
+        // title: `No.${index} - 详情信息`,
+        // 最大打开标签数
+        dynamicLevel: 50,
+      },
+    }
     if (model === 'query') {
       // 保存信息到标签页
-      useMultiTagsStoreHook().handleTags('push', {
-        path: `/task/edit`,
-        name: 'Edit',
-        query: parameter,
-        meta: {
-          title: parameter.id ? `任务-${parameter.name}` : `我的任务${parameter.index}`,
-          // 如果使用的是非国际化精简版title可以像下面这么写
-          // title: `No.${index} - 详情信息`,
-          // 最大打开标签数
-          dynamicLevel: 50,
-        },
+      if (model === 'query') {
+        useMultiTagsStoreHook().handleTags('push', nowRoute)
+        // 路由跳转
+        router.push({ name: 'Edit', query: parameter })
+      }
+    }
+    if (model === 'replace') {
+      const multiTags = useMultiTagsStoreHook().multiTags
+      let newMultiTags = multiTags.map((v) => {
+        if (v?.query?.id === parameter.id) {
+          v = nowRoute
+        }
+        if (v?.query?.index === route?.query?.index && route?.query?.index) {
+          v = nowRoute
+        }
+        return v
       })
-      // 路由跳转
-      router.push({ name: 'Edit', query: parameter })
-    } else if (model === 'params') {
-      useMultiTagsStoreHook().handleTags('push', {
-        path: `/tabs/edit/:number`,
-        name: 'Edit',
-        params: parameter,
-        meta: {
-          title: `新增任务-${parameter.number}`,
-          // 如果使用的是非国际化精简版title可以像下面这么写
-          // title: `No.${index} - 详情信息`,
-        },
-      })
-      router.push({ name: 'Edit', params: parameter })
+      useMultiTagsStoreHook().handleTags('equal', newMultiTags)
+      router.replace({ name: 'Edit', query: parameter })
     }
   }
 

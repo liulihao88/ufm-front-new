@@ -162,7 +162,7 @@ const save = async () => {
   }
   let res = await saveTaskPublic(mergeForm)
   proxy.$toast('保存成功')
-  toDetail({ id: res.id, name: res.name }, 'query')
+  toDetail({ id: res, name: mergeForm.name }, 'replace')
 }
 async function getFormValue() {
   let mapConfigsData = (await ShineConfigEl.value.postDataFn()) ?? {}

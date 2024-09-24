@@ -565,7 +565,7 @@ onBeforeUnmount(() => {
       </ul>
     </transition>
     <!-- 右侧功能按钮 -->
-    <el-dropdown trigger="click" placement="bottom-end" @command="handleCommand">
+    <el-dropdown trigger="hover" class="cp" placement="bottom-end" @command="handleCommand">
       <span class="arrow-down">
         <IconifyIconOffline :icon="ArrowDown" class="dark:text-white" />
       </span>
