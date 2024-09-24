@@ -604,6 +604,7 @@ const delCopyFn = (item) => {
 
     .ant-tabs {
       height: calc(100vh - 200px);
+      overflow-y: auto;
     }
 
     .btn-box {
@@ -786,5 +787,9 @@ const delCopyFn = (item) => {
 
 .origin-common-enter .ant-tabs-content-holder {
   overflow: auto;
+}
+
+:deep(.ant-tabs-content) {
+  padding-bottom: 40px !important;
 }
 </style>
