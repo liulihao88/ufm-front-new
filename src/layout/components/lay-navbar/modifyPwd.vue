@@ -7,6 +7,7 @@ const model = ref({
   newPasword: '',
   oldPasword: '',
 })
+const originModel = proxy.clone(model)
 const isShow = ref(false)
 const gFormRef = ref(null)
 const rules = {
@@ -19,13 +20,22 @@ const fieldList = [
   {
     label: '旧密码',
     prop: 'oldPasword',
+    attrs: {
+      type: 'password',
+      width: '90%',
+    },
   },
   {
     label: '新密码',
     prop: 'newPasword',
+    attrs: {
+      type: 'password',
+      width: '90%',
+    },
   },
 ]
 const open = () => {
+  model.value = proxy.clone(originModel)
   isShow.value = true
 }
 
