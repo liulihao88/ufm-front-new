@@ -48,7 +48,10 @@
             <span v-if="record.runtimeName == 'Normal'">
               <span class="status-ufm-el status-tag-normal">{{ record.runtimeNameLabel }}</span>
             </span>
-            <span v-else class="status-ufm-el status-tag-unkown">
+            <span v-else-if="record.runtimeName === 'Idle'" class="status-ufm-el status-tag-unkown">
+              <span>{{ record.runtimeNameLabel }}</span>
+            </span>
+            <span v-else class="status-ufm-el status-tag-warn">
               <span>{{ record.runtimeNameLabel }}</span>
             </span>
             <span class="m-lr-8">
