@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { message } from 'ant-design-vue'
 import router from '@/router'
+import UseLogout from '@/hooks/useLogout.js'
+const { logout } = UseLogout()
 const pramasCountFn = (obj: object) => {
   const pramas: object = {
     timeout: null, // 超时定义
@@ -79,8 +81,8 @@ const axiosAPP = (obj: any) => {
     (response) => {
       $Spinner_common(false)
       if (response.data && response.data.status === 401) {
-        // 验证失效或者过期
-        router.push({ name: 'Login' })
+        logout(true)
+        return
       }
       return response
     },
