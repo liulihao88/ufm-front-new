@@ -89,12 +89,12 @@ export function closeLoading() {
 }
 
 export function handleMoreError(errorData) {
-  debugger
   if (errorData.status === 401) {
     if (errorData.message) {
       $toast(errorData.message, 'e')
     }
-    return router.push({ name: 'Login' })
+    logout(true)
+    return
   }
   const { message, details } = errorData
   if (!message) {

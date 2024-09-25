@@ -76,9 +76,9 @@ const passwordKeyFn = () => {
       })
     })
     .catch((err) => {
-      if (err.response.data.message) {
-        proxy.$toast(err.response.data.message, 'e')
-      }
+      // if (err.response.data.message) {
+      //   proxy.$toast(err.response.data.message, 'e')
+      // }
     })
 }
 const nativeLogin = () => {

@@ -101,15 +101,17 @@
           <DeputyNew :setUpTypeName="systemValue" :setUpData="setUpData" @isTestPassFn="isTestPassFn" />
         </a-tab-pane>
       </a-tabs>
-      <div class="btn-box m-t-8">
-        <a-popover v-if="!isTestPass && !isNative" title="">
+      <div class="btn-box">
+        <a-popover v-if="!isTestPass && !isLocal" title="">
           <template #content>
             <p>测试通过才能保存！</p>
           </template>
           <u-button type="ghost" :disabled="!isTestPass" icon="baocun1">保存</u-button>
         </a-popover>
         <u-button v-else type="ghost" icon="baocun1" @click="saveNew">保存</u-button>
-        <u-button type="ghost" icon="icon_ceshi" style="margin-left: 12px" @click="testFn">测试</u-button>
+        <u-button v-if="!isLocal" type="ghost" icon="icon_ceshi" style="margin-left: 12px" @click="testFn">
+          测试
+        </u-button>
       </div>
     </div>
     <o-dialog ref="dialogRef" v-model="isVisible" title="提示" @confirm="delPostFn" @cancel="cancelBackFn">
@@ -165,7 +167,7 @@ const listName = ref('')
 
 const fileDataList = ref([])
 const setUpData = ref({})
-const isNative = ref(false)
+const isLocal = ref(false)
 
 //控制设置、高级、代理  系统数据
 let systemName = ref()
@@ -209,9 +211,9 @@ const changeSystemFn = (value, label, options) => {
   isDeputy.value = options.isDeputy
   activeKey.value = '1'
   if (options.mark == 'LFS') {
-    isNative.value = true
+    isLocal.value = true
   } else {
-    isNative.value = false
+    isLocal.value = false
   }
 }
 
@@ -255,7 +257,7 @@ const newAdd = () => {
   isDisabled.value = false
   isSenior.value = false
   isDeputy.value = false
-  isNative.value = true
+  isLocal.value = true
   activeKey.value = '1'
   isTestPassFn()
 }
@@ -408,9 +410,9 @@ const judgeTypeFn = async (el, type) => {
 const selectFeilFn = (el, index) => {
   selectRow.value = el
   if (el.fsid == 'HSP08398913') {
-    isNative.value = true
+    isLocal.value = true
   } else {
-    isNative.value = false
+    isLocal.value = false
   }
   listName.value = el.name
   proxy.setStorage('ufmListName', el.name)
