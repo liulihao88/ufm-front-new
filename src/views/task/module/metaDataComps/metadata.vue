@@ -264,7 +264,7 @@ defineExpose({
 <template>
   <div class="table-box">
     <div class="f m-b-16">
-      <el-switch v-model="form.enableMetaDataInject" class="custom-switch" active-text="开启元数据提取" />
+      <g-switch v-model="form.enableMetaDataInject" active-text="开启元数据提取" />
       <el-button type="primary" :disabled="!form.enableMetaDataInject" class="ml2" @click="addNew">新增</el-button>
     </div>
     <el-form ref="formRef" :model="form" size="small" @submit.native.prevent>
@@ -310,20 +310,5 @@ defineExpose({
     height: 54px;
     line-height: 54px;
   }
-}
-
-:deep(.custom-switch .el-switch__label--right) {
-  order: 1; /* 将active-text放在左边 */
-  margin-right: 8px;
-}
-
-.custom-switch {
-  display: flex;
-  flex-direction: row-reverse; /* 反转子元素的顺序 */
-  align-items: center;
-}
-
-.custom-switch .el-switch__label--left {
-  order: 2; /* 将inactive-text放在右边 */
 }
 </style>

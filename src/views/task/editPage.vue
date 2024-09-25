@@ -287,18 +287,12 @@ const previewTypeChange = async (value) => {
           </template>
           <template #4>
             <div class="f">
-              <el-switch
-                v-model="form.enableMetaDataInject"
-                class="custom-switch mr2"
-                disabled
-                active-text="开启管理控制"
-              />
+              <g-switch v-model="form.enableMetaDataInject" disabled active-text="开启管理控制1" />
             </div>
           </template>
           <template #5>
             <div class="info-box f">
-              <el-switch v-model="isKeep" class="custom-switch mr2" active-text="设置清理" />
-
+              <g-switch v-model="isKeep" active-text="设置清理" />
               <div class="hour-box">
                 <o-input v-model="form.periodInHour" v-number :min="0" :disabled="!isKeep" width="100" />
                 <span class="m-l-8">
@@ -322,20 +316,3 @@ const previewTypeChange = async (value) => {
     </div>
   </div>
 </template>
-
-<style lang="scss" scoped>
-:deep(.custom-switch .el-switch__label--right) {
-  order: 1; /* 将active-text放在左边 */
-  margin-right: 8px;
-}
-
-.custom-switch {
-  display: flex;
-  flex-direction: row-reverse; /* 反转子元素的顺序 */
-  align-items: center;
-}
-
-.custom-switch .el-switch__label--left {
-  order: 2; /* 将inactive-text放在右边 */
-}
-</style>
