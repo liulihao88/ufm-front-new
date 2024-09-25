@@ -80,7 +80,7 @@ const axiosAPP = (obj: any) => {
       $Spinner_common(false)
       if (response.data && response.data.status === 401) {
         // 验证失效或者过期
-        router.push({ name: 'login' })
+        router.push({ name: 'Login' })
       }
       return response
     },

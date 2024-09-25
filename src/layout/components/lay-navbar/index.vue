@@ -10,7 +10,7 @@ import LaySidebarTopCollapse from '../lay-sidebar/components/SidebarTopCollapse.
 import { handleAliveRoute, getTopMenu } from '@/router/utils'
 import ModifyPwd from '@/layout/components/lay-navbar/modifyPwd.vue'
 import UseLogout from '@/hooks/useLogout.js'
-const { toLogin } = UseLogout()
+const { logout } = UseLogout()
 
 import LogoutCircleRLine from '@iconify-icons/ri/logout-circle-r-line'
 import Setting from '@iconify-icons/ri/settings-3-line'
@@ -56,7 +56,7 @@ const modifyPwd = () => {
 
       <div
         class="search-container w-[40px] h-[48px] flex-c cursor-pointer navbar-bg-hover m-r-10"
-        @click="toLogin(true)"
+        @click="logout(true)"
       >
         <o-tooltip content="退出系统">
           <IconifyIconOffline :icon="LogoutCircleRLine" style="margin: 5px" />
@@ -80,7 +80,7 @@ const modifyPwd = () => {
               <o-icon name="edit" class="po-r" />
               修改密码
             </el-dropdown-item>
-            <el-dropdown-item @click="toLogin">
+            <el-dropdown-item @click="logout">
               <IconifyIconOffline :icon="LogoutCircleRLine" class="m-r-8" />
               退出系统
             </el-dropdown-item>

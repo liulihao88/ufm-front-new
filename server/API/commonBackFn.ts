@@ -35,7 +35,7 @@ const errorCommonFn = (error: any, obj: object) => {
 }
 // 后面根据需求完善
 const backLoginFn = () => {
-  router.push({ name: 'login' })
+  router.push({ name: 'Login' })
 }
 
 export { succussCommonFn, errorCommonFn, backLoginFn }

@@ -5,7 +5,7 @@ import request from '@/utils/request.ts'
 
 export default function useLogout() {
   const router = useRouter()
-  const toLogin = async (isLocal = false) => {
+  const logout = async (isLocal = false) => {
     if (isLocal !== true) {
       let res = await request({
         url: '/auth/signout',
@@ -22,6 +22,6 @@ export default function useLogout() {
     }
   }
   return {
-    toLogin,
+    logout,
   }
 }

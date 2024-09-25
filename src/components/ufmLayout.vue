@@ -31,7 +31,7 @@
       </ul>
     </a-layout-sider>
     <a-layout>
-      <a-layout-header style=" padding: 0;background: #fff; border-bottom: 1px solid #ebebed">
+      <a-layout-header style="padding: 0; background: #fff; border-bottom: 1px solid #ebebed">
         <div class="top-content">
           <h1>
             <span class="iconfont icon-ufm-cengji1" />
@@ -46,7 +46,7 @@
           </h1>
           <ul class="top-muen-box clearfix">
             <li class="f-bt-ct h-40">
-              <o-tooltip v-if="proxy.$dev" content="退出登录" class="m-r-16 cp" @click="toLogin">
+              <o-tooltip v-if="proxy.$dev" content="退出登录" class="m-r-16 cp" @click="logout">
                 <span class="iconfont icon-ufm-tuichu1 m-r-4" />
               </o-tooltip>
               <div class="m-r-24" @click="nativeRefresh">
@@ -66,7 +66,7 @@
                       </div>
                     </el-dropdown-item>
                     <el-dropdown-item>
-                      <div class="cp" @click="toLogin">
+                      <div class="cp" @click="logout">
                         <span class="iconfont icon-ufm-tuichu1 m-r-4" />
                         退出登录
                       </div>
@@ -100,7 +100,7 @@ const useRefresh = useNativeRefresh()
 import { useGlobalStore } from '@/store/useGlobal.js'
 const { changeTaskValue } = useGlobalStore()
 import UseLogout from '@/hooks/useLogout.js'
-const { toLogin } = UseLogout()
+const { logout } = UseLogout()
 
 import {
   RightOutlined,
@@ -289,8 +289,6 @@ function nativeRefresh() {
 }
 </script>
 <style lang="scss" scoped>
-
-
 $barLineColor: #454b54;
 
 @keyframes animation-conf {

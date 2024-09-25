@@ -7,7 +7,7 @@ import { ElNotification, ElMessageBox } from 'element-plus'
 import router from '@/router'
 const { storeLoading1, storeLoading, storeLoadingTrue, storeLoadingFalse } = useLoading()
 import UseLogout from '@/hooks/useLogout.js'
-const { toLogin } = UseLogout()
+const { logout } = UseLogout()
 
 export const loading1 = ref(storeLoading1)
 export const loading = ref(storeLoading)
@@ -81,7 +81,7 @@ service.interceptors.response.use(
 // 除了mobile不清空, 其他都清空
 export function resetLogin() {
   clearStorage()
-  // router.push({ name: 'login' })
+  // router.push({ name: 'Login' })
 }
 
 export function closeLoading() {
@@ -89,11 +89,12 @@ export function closeLoading() {
 }
 
 export function handleMoreError(errorData) {
+  debugger
   if (errorData.status === 401) {
     if (errorData.message) {
       $toast(errorData.message, 'e')
     }
-    return router.push({ name: 'login' })
+    return router.push({ name: 'Login' })
   }
   const { message, details } = errorData
   if (!message) {
