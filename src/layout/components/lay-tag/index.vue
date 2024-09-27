@@ -8,7 +8,7 @@ import { handleAliveRoute, getTopMenu } from '@/router/utils'
 import { useSettingStoreHook } from '@/store/modules/settings'
 import { useMultiTagsStoreHook } from '@/store/modules/multiTags'
 import { usePermissionStoreHook } from '@/store/modules/permission'
-import { ref, watch, unref, toRaw, nextTick, onBeforeUnmount } from 'vue'
+import { ref, watch, unref, toRaw, nextTick, onBeforeUnmount, getCurrentInstance } from 'vue'
 import { delay, isEqual, isAllEmpty, useResizeObserver } from '@pureadmin/utils'
 
 import ExitFullscreen from '@iconify-icons/ri/fullscreen-exit-fill'
@@ -46,6 +46,8 @@ const {
   onContentFullScreen,
 } = useTags()
 
+const { proxy } = getCurrentInstance()
+
 const tabDom = ref()
 const containerDom = ref()
 const scrollbarDom = ref()
@@ -67,6 +69,14 @@ const dynamicTagView = async () => {
     }
   })
   moveToView(index)
+}
+
+const closeAllPage = () => {
+  const allRoute = multiTags.value
+  if (allRoute.length === 1) {
+    return proxy.$toast('最少保持一个任务', 'e')
+  }
+  onClickDrop(5, '')
 }
 
 const moveToView = async (index: number): Promise<void> => {
@@ -564,6 +574,9 @@ onBeforeUnmount(() => {
         </div>
       </ul>
     </transition>
+    <o-tooltip content="关闭所有标签页">
+      <o-icon name="circle-close" class="po-r t-3" @click="closeAllPage" />
+    </o-tooltip>
     <!-- 右侧功能按钮 -->
     <el-dropdown trigger="hover" class="cp" placement="bottom-end" @command="handleCommand">
       <span class="arrow-down">

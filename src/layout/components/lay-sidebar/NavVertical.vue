@@ -29,6 +29,12 @@ const menuData = computed(() => {
   return menuDataRes
 })
 
+const defaultOpeneds = computed(() => {
+  return menuData.value.map((v) => {
+    return v.path
+  })
+})
+
 const loading = computed(() => (pureApp.layout === 'mix' ? false : menuData.value.length === 0 ? true : false))
 
 const defaultActive = computed(() => (!isAllEmpty(route.meta?.activePath) ? route.meta.activePath : route.path))
@@ -79,6 +85,7 @@ onBeforeUnmount(() => {
     <el-scrollbar wrap-class="scrollbar-wrapper" :class="[device === 'mobile' ? 'mobile' : 'pc']">
       <el-menu
         :unique-opened="false"
+        :default-openeds="defaultOpeneds"
         mode="vertical"
         popper-class="pure-scrollbar"
         class="outer-most select-none"
