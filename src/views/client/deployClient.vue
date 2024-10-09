@@ -367,7 +367,7 @@ const ipToInteger = (ip: any) => {
 .box {
   .box-ant {
     position: fixed;
-    top: 99px;
+    top: 109px;
     right: 40px;
     z-index: 1;
 

@@ -2,68 +2,70 @@
   <div>
     <div class="content-box">
       <!-- 头部功能 -->
-      <div class="box-top">
-        <div class="box-top-a">
-          <div class="box-top-left">
-            <o-select
-              v-model="selectValue"
-              width="300"
-              :options="options"
-              label="id"
-              value="id"
-              @changeSelect="changeSelect"
-            />
-          </div>
-          <div class="box-top-right">
-            <div class="box-ant">
-              <el-checkbox
-                v-model="selectAll"
-                border
-                :indeterminate="isIndeterminate"
-                class="po-r t-2"
-                @change="selectAllHandle"
-              >
-                全选
-              </el-checkbox>
-              <o-tooltip content="请至少选择一个客户端">
-                <u-button
-                  :disabled="!selectTrue"
-                  icon="shut-down"
-                  type="line"
-                  class="m-b-8"
-                  @click="batchOpreteFn('重启')"
+      <el-affix>
+        <div class="box-top">
+          <div class="box-top-a">
+            <div class="box-top-left">
+              <o-select
+                v-model="selectValue"
+                width="300"
+                :options="options"
+                label="id"
+                value="id"
+                @changeSelect="changeSelect"
+              />
+            </div>
+            <div class="box-top-right">
+              <div class="box-ant">
+                <el-checkbox
+                  v-model="selectAll"
+                  border
+                  :indeterminate="isIndeterminate"
+                  class="po-r t-2"
+                  @change="selectAllHandle"
                 >
-                  重启
-                </u-button>
-              </o-tooltip>
-              <o-tooltip content="请至少选择一个客户端">
-                <u-button
-                  icon="shuaxin-xian"
-                  type="line"
-                  class="m-b-8"
-                  :disabled="!selectTrue"
-                  @clickBack="batchOpreteFn('更新')"
-                >
-                  更新
-                </u-button>
-              </o-tooltip>
-              <o-tooltip content="请至少选择一个客户端">
-                <u-button
-                  icon="guanbi"
-                  type="line"
-                  class="m-b-8"
-                  :disabled="!selectTrue"
-                  @click="batchOpreteFn('关闭')"
-                >
-                  关闭
-                </u-button>
-              </o-tooltip>
+                  全选
+                </el-checkbox>
+                <o-tooltip content="请至少选择一个客户端">
+                  <u-button
+                    :disabled="!selectTrue"
+                    icon="shut-down"
+                    type="line"
+                    class="m-b-8"
+                    @click="batchOpreteFn('重启')"
+                  >
+                    重启
+                  </u-button>
+                </o-tooltip>
+                <o-tooltip content="请至少选择一个客户端">
+                  <u-button
+                    icon="shuaxin-xian"
+                    type="line"
+                    class="m-b-8"
+                    :disabled="!selectTrue"
+                    @clickBack="batchOpreteFn('更新')"
+                  >
+                    更新
+                  </u-button>
+                </o-tooltip>
+                <o-tooltip content="请至少选择一个客户端">
+                  <u-button
+                    icon="guanbi"
+                    type="line"
+                    class="m-b-8"
+                    :disabled="!selectTrue"
+                    @click="batchOpreteFn('关闭')"
+                  >
+                    关闭
+                  </u-button>
+                </o-tooltip>
 
-              <u-button icon="change-retry" type="line" class="m-b-8" @click="refreshFn">刷新</u-button>
+                <u-button icon="change-retry" type="line" class="m-b-8" @click="refreshFn">刷新</u-button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </el-affix>
       <!-- 卡片部分 -->
       <div class="card-box">
         <o-empty v-if="proxy.isEmpty(dataArr)" class="tc ma" />

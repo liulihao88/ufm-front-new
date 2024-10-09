@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="bot-bot">
-        <g-table
+        <o-table
           ref="tableRef"
           v-loading="loading1"
           :columns="columns"
@@ -117,7 +117,7 @@
               </div>
             </template>
           </template>
-        </g-table>
+        </o-table>
       </div>
     </div>
     <g-yes-dialog ref="yesDialogRef" @confirm="confirm" />
